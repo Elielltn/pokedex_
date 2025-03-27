@@ -1,4 +1,6 @@
 const btnLoad = document.getElementById("btn-load");
+const btnSearch = document.getElementById("btn-search");
+const input = document.getElementById("input")
 let pokedex = document.getElementById("pokedex");
 let offset = 0;
 
@@ -23,7 +25,7 @@ function createPokeObject(pokemonDetails) {
         id: pokemon.id,
         name: pokemon.name,
         type1: pokemon.types[0].type.name,
-        type2: pokemon.types[1]?.type.name,
+        type2: pokemon.types[1]?.type.name, 
       })
   );
 }
@@ -118,9 +120,31 @@ function getPokemons(urlPokemons) {
     offset += 12;
 }
 
+function searchPokemon(value){
+  if (value !== '') {
+    pokedex.innerHTML = ''
+    offset = 0
+    btnLoad.classList.add('hidden')
+    getPokemon(`https://pokeapi.co/api/v2/pokemon/${value}`)
+    
+  } else if (value == ''){
+    pokedex.innerHTML = ''
+    getPokemons(createPaginated())
+    btnLoad.classList.remove('hidden')
+  }
+}
+
 btnLoad.addEventListener("click", () => {
   getPokemons(createPaginated()); // Faz a requisição inicial
-  
 });
 
+btnSearch.addEventListener("click", () => {
+  searchPokemon(input.value)
+})
+
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter"){
+    searchPokemon(input.value)
+  }
+})
 getPokemons(createPaginated());
