@@ -1,0 +1,50 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #f5f5f5;
+  --header: #d32f2f;
+  --card: #fff;
+  --card-border: #d32f2f;
+  --main-text: #212121;
+  --secondary-text: #616161;
+  --main-btn: #0288d1;
+  --secondary-btn: #ffc107;
+  --hover: #ff5722;
+
+  --white: #fff;
+  --background-gray: #f2f2f2;
+  --number-gray: #919191;
+  --name-black: #313131;
+  --grass-green: #9bcc50;
+  --poison-purple: #b97fc9;
+  --fire-red: #fd7d24;
+  --flying-top-blue: #3dc7ef;
+  --flying-bottom-gray: #bdb9b8;
+  --water-blue: #4592c4;
+  --bug-green: #729f3f;
+  --normal-gray: #a4acaf;
+  --eletric-yellow: #eed535;
+  --ground-top-yellow: #f7de3f;
+  --ground-bottom-brown: #ab9842;
+  --fighting-red: #d56723;
+  --psychic-pink: #f366b9;
+  --rock-brown: #a38c21;
+  --steel-gray: #9eb7b8;
+  --ice-blue: #51c4e7;
+  --ghost-purple: #7b62a3;
+  --dragon-top-blue: #53a4cf;
+  --dragon-bottom-red: #f16e57;
+  --fairy-pink: #fdb8e8;
+  --dark-gray: #707070;
+}
+
+body{
+  overflow-x: hidden;
+  background-color: var(--background);
+}
