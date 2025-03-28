@@ -54,7 +54,7 @@
 
 .grid-item {
   max-width: 15.625rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   background-color: var(--background-gray);
   display: flex;
   flex-direction: column;

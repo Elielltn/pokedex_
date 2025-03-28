@@ -1,6 +1,7 @@
 const btnLoad = document.getElementById("btn-load");
 const btnSearch = document.getElementById("btn-search");
-const input = document.getElementById("input")
+const input = document.getElementById("input");
+const pokemonCard = document.getElementById("pokemon-card");
 let pokedex = document.getElementById("pokedex");
 let offset = 0;
 
@@ -25,66 +26,71 @@ function createPokeObject(pokemonDetails) {
         id: pokemon.id,
         name: pokemon.name,
         type1: pokemon.types[0].type.name,
-        type2: pokemon.types[1]?.type.name, 
+        type2: pokemon.types[1]?.type.name,
       })
   );
 }
 
 function createPokeCard(pokemonObjects) {
   pokemonObjects.forEach((pokemonObject) => {
+    const pokeLink = `/pokemon.html?pokemon=${pokemonObject.name}`; // Adiciona o nome do Pokémon na URL
     pokemonObject.type2
       ? (pokedex.innerHTML += `
-         <div class="grid-item">
-           <div class="img-container" id="img-container">
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                pokemonObject.id
-              }.png"
-              alt=""
-              class="item-img"
-              id="item-img"
-            />
-          </div>
-          <div class="item-details" id="item-details">
-            <p class="number" id="number">Nº${pokemonObject.id}</p>
-            <p class="name" id="name">${pokemonObject.name}</p>
-            <div class="types" id="types">
-              <p class="type1 ${pokemonObject.type1}-type" id="type1">${
+        <a href="${pokeLink}" id="pokemon-card">
+          <div class="grid-item">
+            <div class="img-container" id="img-container">
+              <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                  pokemonObject.id
+                }.png"
+                alt="${pokemonObject.name}"
+                class="item-img"
+                id="item-img"
+              />
+            </div>
+            <div class="item-details" id="item-details">
+              <p class="number" id="number">Nº${pokemonObject.id}</p>
+              <p class="name" id="name">${pokemonObject.name}</p>
+              <div class="types" id="types">
+                <p class="type1 ${pokemonObject.type1}-type" id="type1">${
           pokemonObject.type1.charAt(0).toUpperCase() +
           pokemonObject.type1.substring(1)
         }</p>
-              <p class="type1 ${pokemonObject.type2}-type" id="type2">${
+                <p class="type1 ${pokemonObject.type2}-type" id="type2">${
           pokemonObject.type2.charAt(0).toUpperCase() +
           pokemonObject.type2.substring(1)
         }</p>
+              </div>
             </div>
           </div>
-         </div>
-    `)
+        </a>
+      `)
       : (pokedex.innerHTML += `
+        <a href="${pokeLink}" id="pokemon-card">
           <div class="grid-item">
-           <div class="img-container" id="img-container">
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-                pokemonObject.id
-              }.png"
-              alt=""
-              class="item-img"
-              id="item-img"
-            />
-          </div>
-          <div class="item-details" id="item-details">
-            <p class="number" id="number">Nº${pokemonObject.id}</p>
-            <p class="name" id="name">${pokemonObject.name}</p>
-            <div class="types" id="types">
-              <p class="type1 ${pokemonObject.type1}-type" id="type1">${
+            <div class="img-container" id="img-container">
+              <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                  pokemonObject.id
+                }.png"
+                alt="${pokemonObject.name}"
+                class="item-img"
+                id="item-img"
+              />
+            </div>
+            <div class="item-details" id="item-details">
+              <p class="number" id="number">Nº${pokemonObject.id}</p>
+              <p class="name" id="name">${pokemonObject.name}</p>
+              <div class="types" id="types">
+                <p class="type1 ${pokemonObject.type1}-type" id="type1">${
           pokemonObject.type1.charAt(0).toUpperCase() +
           pokemonObject.type1.substring(1)
         }</p>
               </div>
+            </div>
           </div>
-         </div>
-    `);
+        </a>
+      `);
   });
 }
 
@@ -117,20 +123,19 @@ function getPokemons(urlPokemons) {
       createPokeCard(pokemonObjects);
     })
     .catch((error) => console.error("Erro ao buscar os Pokémons:", error));
-    offset += 12;
+  offset += 12;
 }
 
-function searchPokemon(value){
-  if (value !== '') {
-    pokedex.innerHTML = ''
-    offset = 0
-    btnLoad.classList.add('hidden')
-    getPokemon(`https://pokeapi.co/api/v2/pokemon/${value}`)
-    
-  } else if (value == ''){
-    pokedex.innerHTML = ''
-    getPokemons(createPaginated())
-    btnLoad.classList.remove('hidden')
+function searchPokemon(value) {
+  if (value !== "") {
+    pokedex.innerHTML = "";
+    offset = 0;
+    btnLoad.classList.add("hidden");
+    getPokemon(`https://pokeapi.co/api/v2/pokemon/${value}`);
+  } else if (value == "") {
+    pokedex.innerHTML = "";
+    getPokemons(createPaginated());
+    btnLoad.classList.remove("hidden");
   }
 }
 
@@ -139,12 +144,13 @@ btnLoad.addEventListener("click", () => {
 });
 
 btnSearch.addEventListener("click", () => {
-  searchPokemon(input.value)
-})
+  searchPokemon(input.value);
+});
 
 input.addEventListener("keydown", (event) => {
-  if (event.key === "Enter"){
-    searchPokemon(input.value)
+  if (event.key === "Enter") {
+    searchPokemon(input.value);
   }
-})
+});
+
 getPokemons(createPaginated());
