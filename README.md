@@ -57,24 +57,6 @@ O JavaScript gerencia toda a lógica da aplicação:
 
 ---
 
-## 📂 Estrutura do Projeto
-
-```
-seu-repositorio/
-├── index.html          # Página principal com lista de Pokémon
-├── pokemon.html        # Página de detalhes do Pokémon
-├── main.js             # Lógica da página principal
-├── app.js              # Lógica central (API e renderização)
-├── script.js           # Lógica alternativa para busca de Pokémon
-├── styles/
-│   ├── global.css      # Estilos globais
-│   ├── index.css       # Estilos da página principal
-│   ├── pokemon.css     # Estilos da página de detalhes
-└── README.md           # Documentação do projeto
-```
-
----
-
 ## 🔧 Melhorias Futuras
 
 - **Adicionar um spinner de carregamento** para melhorar a experiência do usuário.
