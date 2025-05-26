@@ -1,24 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/details.css">
-  <title>Detalhes do Pokémon</title>
-</head>
-<body>
-  <div class="content-wrap">
-    <div class="header">
-      <h1 id="pokemon-name"></h1>
-      <p id="pokemon-id"></p>
-    </div>
-    <div id="pokemon-details">
-      <!-- Detalhes do Pokémon serão carregados aqui -->
-    </div>
-    <button onclick="window.history.back()">Voltar</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/pokemon.css" />
+    <title>Detalhes do Pokémon</title>
+  </head>
+  <body>
+    <div class="content-wrap">
+      <div class="header">
+        <a href="" id="previous-pokemon"></a>
+      </div>
+      <div class="grid">
+        <div class="img-stats">
+          <div class="img-container">
+            <img id="pokemon-img" src="" alt="" />
+          </div>
 
-  <script src="pokemon.js"></script>
-</body>
+          <div class="estatistics"></div>
+        </div>
+        <div class="pokemon-details">
+          <div class="name-number">
+            <p class="name" id="pokemon-name"></p>
+            <p class="number" id="pokemon-id"></p>
+          </div>
+          <div class="minor-details">
+            <div class="detail">
+              <p class="key">Altura</p>
+              <p class="value" id="pokemon-height"></p>
+            </div>
+            <div class="detail">
+              <p class="key">Categoria</p>
+              <p class="value" id="pokemon-category"></p>
+            </div>
+            <div class="detail">
+              <p class="key">Peso</p>
+              <p class="value" id="pokemon-weight"></p>
+            </div>
+            <div class="detail">
+              <p class="key">Habilidades</p>
+              <div class="abilities" id="abilities"></div>
+            </div>
+            <div class="detail">
+              <p class="key">Sexo</p>
+              <p class="value" id="pokemon-gender"></p>
+            </div>
+          </div>
+          <div class="types-weakness">
+            <p class="type-title">Tipo</p>
+            <div class="types">
+              
+            </div>
+            <div class=""></div>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="window.history.back()">Voltar</button>
+    </div>
+
+    <script type="module" src="pokemon.js"></script>
+  </body>
 </html>
